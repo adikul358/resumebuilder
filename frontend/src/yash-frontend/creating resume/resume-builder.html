@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - LaTeX Resume Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-blue-50 via-white to-blue-50 min-h-screen font-sans text-gray-800">
+    <div class="max-w-4xl mx-auto mt-16 bg-white p-10 rounded-xl shadow-2xl">
+        <h2 class="text-4xl font-extrabold text-center text-indigo-600 mb-10 tracking-tight">
+            Build Your Professional Resume
+        </h2>
+        
+        <!-- Resume Form -->
+        <form id="resumeForm" class="space-y-12">
+            <!-- Personal Information Section -->
+            <div>
+                <h3 class="text-3xl font-semibold mb-6 text-indigo-500">Personal Information</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Full Name:</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Email:</label>
+                        <input type="email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Phone Number:</label>
+                        <input type="tel" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">LinkedIn Profile:</label>
+                        <input type="url" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div>
+                <h3 class="text-3xl font-semibold mb-6 text-indigo-500">Education</h3>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Degree:</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Institution Name:</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Year of Graduation:</label>
+                        <input type="number" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">GPA (if applicable):</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Section -->
+            <div>
+                <h3 class="text-3xl font-semibold mb-6 text-indigo-500">Work Experience</h3>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Job Title:</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Company Name:</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-base font-medium text-gray-600">Start Date:</label>
+                            <input type="date" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-base font-medium text-gray-600">End Date:</label>
+                            <input type="date" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Job Responsibilities:</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" rows="4" placeholder="Describe your responsibilities and achievements..." required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div>
+                <h3 class="text-3xl font-semibold mb-6 text-indigo-500">Projects</h3>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Project Title:</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Description:</label>
+                        <textarea class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" rows="4" placeholder="Describe your project..." required></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Technologies Used:</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="E.g., JavaScript, React, Node.js">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div>
+                <h3 class="text-3xl font-semibold mb-6 text-indigo-500">Skills</h3>
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Technical Skills:</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="E.g., Python, Java, SQL, Git">
+                    </div>
+                    <div>
+                        <label class="block text-base font-medium text-gray-600">Soft Skills:</label>
+                        <input type="text" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="E.g., Communication, Teamwork, Problem Solving">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-6 rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition ease-in-out duration-200">Generate Resume</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('resumeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            alert('Your resume is being generated!');
+        });
+    </script>
+</body>
+</html>
+
+

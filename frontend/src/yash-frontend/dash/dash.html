@@ -1,0 +1,140 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LaTeX Resume Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .bg-gradient-custom {
+            background: linear-gradient(90deg, #4C98DF 0%, #57CCA6 100%);
+        }
+        .card-bg-blue {
+            background-color: #E0F2FE;
+        }
+        .card-bg-pink {
+            background-color: #FDE2E2;
+        }
+        .card-bg-yellow {
+            background-color: #FEF3C7;
+        }
+        .card-bg-purple {
+            background-color: #EDE9FE;
+        }
+    </style>
+    <script>
+        function createBlankDocument() {
+            alert("Blank Document clicked! Redirecting...");
+        }
+
+        function openResumeTemplate() {
+            alert("Resume Template clicked! Redirecting...");
+        }
+
+        function openProjectProposal() {
+            alert("Project Proposal clicked! Redirecting...");
+        }
+
+        function openDocument(docNumber) {
+            alert(`Document ${docNumber} clicked! Opening document...`);
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 font-montserrat">
+
+    <!-- Navbar Section -->
+    <header class="bg-white shadow-md py-4">
+        <nav class="container mx-auto flex justify-between items-center px-4">
+            <a href="#" class="text-3xl font-bold text-gray-800 logo">My<span class="text-green-500">Dashboard</span></a>
+            <div class="flex items-center space-x-4">
+                <input type="text" placeholder="Search" class="border rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:border-blue-500" />
+                <a href="#logout" class="text-gray-600 hover:text-green-500 font-semibold">Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section class="py-10">
+        <div class="container mx-auto px-4">
+
+            <!-- Creative Profile Details Section -->
+            <div class="mb-10 flex flex-col md:flex-row items-center justify-center md:justify-start">
+                <div class="relative w-full md:w-1/3 bg-gradient-custom p-6 rounded-lg shadow-lg overflow-hidden flex items-center justify-center">
+                    <img src="https://via.placeholder.com/150" alt="Profile Image" class="w-32 h-32 rounded-full border-4 border-white shadow-lg">
+                    <div class="absolute inset-0 bg-black opacity-25"></div>
+                </div>
+                <div class="w-full md:w-2/3 bg-white p-6 rounded-lg shadow-md -mt-16 md:mt-0 md:ml-6 text-center md:text-left">
+                    <h4 class="text-2xl font-semibold text-gray-800">John Doe</h4>
+                    <p class="text-gray-600 mt-2">Web Developer & Designer</p>
+                    <p class="text-gray-600 mt-4">Passionate developer with experience in building dynamic web applications using modern technologies. Enthusiast in design and user experience.</p>
+                    <div class="flex items-center justify-center md:justify-start space-x-4 mt-4">
+                        <a href="https://linkedin.com" class="text-blue-700 hover:text-blue-900">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M19.5 3H4.5C3.1 3 2 4.1 2 5.5v13C2 19.9 3.1 21 4.5 21h15c1.4 0 2.5-1.1 2.5-2.5v-13C22 4.1 20.9 3 19.5 3zm-12 15H5.5V9H7.5v9zm-1.5-9.7c-.8 0-1.3-.6-1.3-1.4s.6-1.4 1.3-1.4c.8 0 1.3.6 1.3 1.4S6.8 8.3 6 8.3zm13.5 9.7h-2v-4.4c0-1.1-.4-1.8-1.2-1.8-.6 0-1 .4-1.2.9-.1.2-.1.5-.1.7v4.6H12V9h2v1.4c.4-.6 1.1-1.4 2.6-1.4 1.9 0 3.3 1.2 3.3 3.9v4.8z"/></svg>
+                        </a>
+                        <a href="https://github.com" class="text-gray-800 hover:text-gray-900">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.8 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.8-1.6-3.8-1.6-.5-1.2-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.3 1.1 2.8.8.1-.7.4-1.1.7-1.4-2.5-.3-5-1.2-5-5.3 0-1.2.4-2.2 1-3.1-.1-.3-.5-1.5.1-3.1 0 0 .8-.2 2.7 1 .8-.2 1.7-.3 2.5-.3s1.7.1 2.5.3c1.9-1.2 2.7-1 2.7-1 .6 1.6.2 2.8.1 3.1.6.9 1 2 1 3.1 0 4.1-2.5 5-5 5.3.4.3.8 1 .8 2.1v3.2c0 .3.2.7.8.6 4.5-1.5 7.8-5.8 7.8-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+                        </a>
+                        <a href="mailto:johndoe@example.com" class="text-red-600 hover:text-red-800">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 12.713l11.154-7.423c.38-.253.53-.348.65-.392a.718.718 0 00.307-.233c.088-.114.142-.259.175-.406A.997.997 0 0024 4V2.708A1.508 1.508 0 0022.492 1H1.508A1.508 1.508 0 000 2.708V4c0 .208.05.416.144.613.033.147.087.292.175.406.077.106.178.187.307.233.12.044.27.14.65.392L12 12.713zM0 5.757v14.535A1.708 1.708 0 001.708 22h20.584A1.708 1.708 0 0024 20.292V5.757L13.462 13.33a2.46 2.46 0 01-2.923 0L0 5.757z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Documents Section -->
+            <div class="mb-10">
+                <h3 class="text-3xl font-bold text-gray-800 mb-6">Recent Documents</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-6">
+                    <div class="p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 card-bg-blue">
+                        <button class="text-xl font-semibold text-gray-800" onclick="openDocument(1)">Document 1</button>
+                        <p class="text-sm text-gray-600 mt-2">Last modified: 01/09/2024</p>
+                    </div>
+                    <div class="p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 card-bg-pink">
+                        <button class="text-xl font-semibold text-gray-800" onclick="openDocument(2)">Document 2</button>
+                        <p class="text-sm text-gray-600 mt-2">Last modified: 02/09/2024</p>
+                    </div>
+                    <div class="p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 card-bg-yellow">
+                        <button class="text-xl font-semibold text-gray-800" onclick="openDocument(3)">Document 3</button>
+                        <p class="text-sm text-gray-600 mt-2">Last modified: 03/09/2024</p>
+                    </div>
+                    <div class="p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 card-bg-purple">
+                        <button class="text-xl font-semibold text-gray-800" onclick="openDocument(4)">Document 4</button>
+                        <p class="text-sm text-gray-600 mt-2">Last modified: 04/09/2024</p>
+                    </div>
+                </div>
+
+                <!-- New Document Section -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-200">
+                        <div class="bg-gradient-custom h-24 flex items-center justify-center mb-4 rounded-lg text-white">
+                            <button class="text-4xl font-bold" onclick="createBlankDocument()">+</button>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-800">Blank Document</h4>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-200">
+                        <div class="bg-blue-500 h-24 flex items-center justify-center mb-4 rounded-lg text-white">
+                            <button class="text-xl font-semibold" onclick="openResumeTemplate()">Resume Template</button>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-800">Resume Serif</h4>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-200">
+                        <div class="bg-green-500 h-24 flex items-center justify-center mb-4 rounded-lg text-white">
+                            <button class="text-xl font-semibold" onclick="openProjectProposal()">Project Proposal</button>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-800">Proposal Tropic</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+
+
+
+
