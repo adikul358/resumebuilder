@@ -55,7 +55,7 @@
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}
 }
 
 \newcommand{\resumeSubSubheading}[2]{
@@ -86,20 +86,19 @@
 \begin{center}
     \textbf{\Huge \scshape {{NAME}}} \\ \vspace{1pt}
     \small {{PHONE}} $|$ \href{mailto:{{EMAIL}}}{\underline{{{EMAIL}}}} $|$ 
-    \href{{{LINKEDIN}}}{\underline{{{LINKEDIN_USERNAME}}}} $|$
-    \href{{{GITHUB}}}{\underline{github.com/{{GITHUB_USERNAME}}}}
+    \href{https://linkedin.com/in/{{LINKEDIN}}}{\underline{linkedin/{{LINKEDIN}}}} $|$
+    \href{https://github.com/{{GITHUB}}}{\underline{github/{{GITHUB}}}}
 \end{center}
-
 
 \section{Education}
   \resumeSubHeadingListStart
 %BLOCK_EDUCATION_START
     \resumeSubheading
       {{{SCHOOL}}}{{{LOCATION}}}
-      {{{DEGREE}}}{{{MONTH_START}} -- {{MONTH_END}}}
+      {{{DEGREE}}}{{{MONTH_START}} -- {{MONTH_END}}} \\
+      {{DESCRIPTION}}
 %BLOCK_EDUCATION_END
   \resumeSubHeadingListEnd
-
 
 %-----------EXPERIENCE-----------
 \section{Experience}
@@ -107,59 +106,11 @@
 %BLOCK_EXPERIENCE_START
     \resumeSubheading
       {{{POSITION}}}{{{MONTH_START}} -- {{MONTH_END}}}
-      {{{COMPANY}}}{{{LOCATION}}}
-      % \resumeItemListStart
-        {{DESCRIPTION}}
-      % \resumeItemListEnd
+      {{{COMPANY}}}{{{LOCATION}}} \\
+    {{DESCRIPTION}}
 %BLOCK_EXPERIENCE_END
-      
-% -----------Multiple Positions Heading-----------
-%    \resumeSubSubheading
-%     {Software Engineer I}{Oct 2014 - Sep 2016}
-%     \resumeItemListStart
-%        \resumeItem{Apache Beam}
-%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
-%     \resumeItemListEnd
-%    \resumeSubHeadingListEnd
-%-------------------------------------------
+  \resumeSubHeadingListEnd
   \resumeSubHeadingListEnd
 
-
-% %-----------PROJECTS-----------
-% \section{Projects}
-%     \resumeSubHeadingListStart
-%       \resumeProjectHeading
-%           {\textbf{Gitlytics} $|$ \emph{Python, Flask, React, PostgreSQL, Docker}}{June 2020 -- Present}
-%           \resumeItemListStart
-%             \resumeItem{Developed a full-stack web application using with Flask serving a REST API with React as the frontend}
-%             \resumeItem{Implemented GitHub OAuth to get data from user’s repositories}
-%             \resumeItem{Visualized GitHub data to show collaboration}
-%             \resumeItem{Used Celery and Redis for asynchronous tasks}
-%           \resumeItemListEnd
-%       \resumeProjectHeading
-%           {\textbf{Simple Paintball} $|$ \emph{Spigot API, Java, Maven, TravisCI, Git}}{May 2018 -- May 2020}
-%           \resumeItemListStart
-%             \resumeItem{Developed a Minecraft server plugin to entertain kids during free time for a previous job}
-%             \resumeItem{Published plugin to websites gaining 2K+ downloads and an average 4.5/5-star review}
-%             \resumeItem{Implemented continuous delivery using TravisCI to build the plugin upon new a release}
-%             \resumeItem{Collaborated with Minecraft server administrators to suggest features and get feedback about the plugin}
-%           \resumeItemListEnd
-%     \resumeSubHeadingListEnd
-
-
-
-% %
-% %-----------PROGRAMMING SKILLS-----------
-% \section{Technical Skills}
-%  \begin{itemize}[leftmargin=0.15in, label={}]
-%     \small{\item{
-%      \textbf{Languages}{: Java, Python, C/C++, SQL (Postgres), JavaScript, HTML/CSS, R} \\
-%      \textbf{Frameworks}{: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI} \\
-%      \textbf{Developer Tools}{: Git, Docker, TravisCI, Google Cloud Platform, VS Code, Visual Studio, PyCharm, IntelliJ, Eclipse} \\
-%      \textbf{Libraries}{: pandas, NumPy, Matplotlib}
-%     }}
-%  \end{itemize}
-
-
-%-------------------------------------------
 \end{document}
+ 
