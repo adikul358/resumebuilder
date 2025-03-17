@@ -4,6 +4,10 @@ import com.aj2.resumebuilder.api.model.Education;
 import com.aj2.resumebuilder.api.model.Experience;
 import com.aj2.resumebuilder.api.model.Metadata;
 import com.aj2.resumebuilder.api.model.Resume;
+import com.aj2.resumebuilder.api.model.Education;
+import com.aj2.resumebuilder.api.model.Experience;
+import com.aj2.resumebuilder.api.model.Metadata;
+import com.aj2.resumebuilder.api.model.Resume;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -27,11 +31,28 @@ import java.util.UUID;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 
 @CrossOrigin(origins = "file://,null,http://localhost:5173")
 @RestController
 public class ResumeController {
 
+    public static String getBlockTex(String input, String start, String end) {
+        int startIndex = input.indexOf(start);
+        int endIndex = input.indexOf(end);
+        if (startIndex == -1 || endIndex == -1 || endIndex <= startIndex) {
+            return ""; // Return an empty string if not found or invalid
+        }
+        String substring = input.substring(startIndex + start.length(), endIndex).trim();
+        String[] lines = substring.split("\n");
+        return String.join("\n", lines).trim();
+    }
     public static String getBlockTex(String input, String start, String end) {
         int startIndex = input.indexOf(start);
         int endIndex = input.indexOf(end);
