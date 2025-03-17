@@ -1,11 +1,26 @@
+import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 const SignUp = () => {
     const navigate = useNavigate()
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault()
+
+        const res = await fetch("http://localhost:8080/metadata", {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name: formName, email: formEmail})
+        })
+        console.log(res)
+
         navigate("/dashboard")
     }
+    const [formName, setFormName] = useState("")
+    const [formEmail, setFormEmail] = useState("")
+    const handleName = (e) => setFormName(e.target.value)
+    const handleEmail = (e) => setFormEmail(e.target.value)
 
     return (
         <>
@@ -20,13 +35,13 @@ const SignUp = () => {
                         </p>
                         <div className="w-full mt-12">
                             <label for="name" className="block font-medium">Name</label>
-                            <input type="text" id="name" name="name" placeholder="John Doe" required
+                            <input type="text" id="name" name="name" placeholder="John Doe" required value={formName} onChange={handleName}
                                 className="text-gray-800 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/75 focus:border-primary/75 sm:text-sm" 
                             />
                         </div>
                         <div className="w-full mt-4">
                             <label for="email" className="block font-medium">Email</label>
-                            <input type="email" id="email" name="email" placeholder="john@doe.com" required
+                            <input type="email" id="email" name="email" placeholder="john@doe.com" required value={formEmail} onChange={handleEmail}
                                 className="text-gray-800 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/75 focus:border-primary/75 sm:text-sm" 
                             />
                         </div>
@@ -38,7 +53,7 @@ const SignUp = () => {
                         </div>
                         <div className="w-full mt-4">
                             <label for="confirm-password" className="block font-medium">Confirm Password</label>
-                            <input type="confirm-password" id="confirm-password" name="confirmPassword" placeholder="********" required
+                            <input type="password" id="confirm-password" name="confirmPassword" placeholder="********" required
                                 className="text-gray-800 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/75 focus:border-primary/75 sm:text-sm" 
                             />
                         </div>

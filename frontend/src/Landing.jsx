@@ -4,7 +4,7 @@ const Landing = () => {
 
     return (
         <>
-            <nav className="max-w-6xl w-full mx-auto flex flex-row items-center justify-between h-[72px] text-white z-10">
+            <nav className="max-w-6xl w-full mx-auto flex flex-row items-center justify-between max-lg:px-3 h-[72px] text-white z-10">
                 <Link to="/"><span className="text-2xl font-display font-bold">
                     LaTeX<span className="text-[#acf4e8]">Resume</span></span>
                 </Link>
@@ -14,7 +14,7 @@ const Landing = () => {
                     <Link to="/signup" className="px-4 py-1 border border-white/25 bg-secondary text-white rounded-lg font-medium">Sign Up</Link>
                 </div>
             </nav>
-            <div className="bg-gradient-to-tl from-secondary to-primary -mt-[72px] pt-[72px] text-white">
+            <div className="bg-gradient-to-tl from-secondary to-primary -mt-[72px] pt-[72px] max-lg:px-3 text-white">
                 <div className="max-w-6xl mx-auto flex flex-col items-center py-24">
                     <p className="text-6xl font-display opacity-95 text-center">
                         Generate Your Professional LaTeX Resume Effortlessly
@@ -31,26 +31,26 @@ const Landing = () => {
                 <p className="text-5xl font-display opacity-95 text-center text-[#4A95E0]">
                     Features
                 </p>
-                <div className="grid grid-cols-3 gap-3 w-full mt-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full mt-12 max-lg:px-3">
                     <div className="p-6 flex flex-col items-center rounded-lg shadow-md shadow-[rgba(0,0,0,0.09)]">
                         <i className="fas fa-file-alt text-[#4A95E0] text-6xl"></i>
-                        <h3 className="mt-6 font-display text-xl " >Industry-Standard Templates</h3>
+                        <h3 className="mt-6 font-display text-xl text-center">Industry-Standard Templates</h3>
                         <p className="mt-1 font-serif text-lg text-center opacity-90">Choose from professional LaTeX templates that meet industry standards.</p>
                     </div>
                     <div className="p-6 flex flex-col items-center rounded-lg shadow-md shadow-[rgba(0,0,0,0.09)]">
                         <i className="fas fa-edit text-[#4A95E0] text-6xl"></i>
-                        <h3 className="mt-6 font-display text-xl " >User-Friendly Interface</h3>
+                        <h3 className="mt-6 font-display text-xl text-center">User-Friendly Interface</h3>
                         <p className="mt-1 font-serif text-lg text-center opacity-90">Simple forms and intuitive design make it easy to build your resume step-by-step.</p>
                     </div>
                     <div className="p-6 flex flex-col items-center rounded-lg shadow-md shadow-[rgba(0,0,0,0.09)]">
                         <i className="fas fa-file-pdf text-[#4A95E0] text-6xl"></i>
-                        <h3 className="mt-6 font-display text-xl " >Export to PDF</h3>
+                        <h3 className="mt-6 font-display text-xl text-center">Export to PDF</h3>
                         <p className="mt-1 font-serif text-lg text-center opacity-90">Generate a high-quality PDF of your resume that is ready to use.</p>
                     </div>
                 </div>
             </div>
             <div className="bg-primary/10" id="contact-us">
-                <div className="max-w-6xl mx-auto flex flex-col items-center pt-[80px] pb-[120px]">
+                <div className="max-w-6xl mx-auto flex flex-col items-center pt-[80px] pb-[120px] max-lg:px-3">
                     <p className="text-5xl font-display opacity-95 text-center text-[#4A95E0]">
                         Contact Us
                     </p>
