@@ -1,11 +1,11 @@
 meta {
-  name: Register
+  name: Get User
   type: http
-  seq: 1
+  seq: 4
 }
 
-post {
-  url: http://localhost:8080/auth/register
+get {
+  url: {{baseUrl}}/auth/me
   body: none
   auth: inherit
 }

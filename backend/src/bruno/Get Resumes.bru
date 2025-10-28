@@ -1,0 +1,16 @@
+meta {
+  name: Get Resumes
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/resumes
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

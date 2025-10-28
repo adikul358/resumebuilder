@@ -5,7 +5,6 @@ import { FaCircleUser } from "react-icons/fa6";
 
 export default function UserCard() {
     const [user, setUser] = useState({})
-    const [blobUrl, setBlobUrl] = useState("")
 
     useEffect(() => {
         setUser({

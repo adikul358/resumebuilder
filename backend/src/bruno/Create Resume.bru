@@ -1,0 +1,23 @@
+meta {
+  name: Create Resume
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/resumes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "Aditya Kulshrestha - Resume",
+    "content": "{\"name\": \"Aditya Kulshrestha\", \"email\": \"ak2162@srmist.edu.in\",\"education\":[{\"institution\":\"SRM Institute of Technology\",\"degree\":\"Bachelor's of Technology, Computer Science\",\"location\":\"Chennai\",\"description\":\"GPA: 9.4\\\\\\\\Courses: Advanced Programming Practice, Computer Architecture, Operating Systems\",\"start_date\":\"08\/2023\",\"end_date\":\"08\/2027\"}],\"experience\":[{\"company\":\"Skilzen\",\"title\":\"Project Manager\",\"location\":\"Bengaluru\",\"description\":\"- Led team of 8 developer interns and established Git version control guidelines.\\\\\\\\- Migrated the product\u2019s codebase from JavaScript to TypeScript for large scale type safety and type documentation.\\\\\\\\- Worked closely with the founder to plan project timelines.\\\\\\\\- Developed automated CI\/CD pipelines using Github Actions.\",\"start_date\":\"06\/2022\",\"end_date\":\"08\/2022\"},{\"company\":\"Skilzen\",\"title\":\"Backend Engineer Intern\",\"location\":\"Bengaluru\",\"description\":\"- Wrote the backend for an ed-tech website using Next.js, Directus, and MySQL.\\\\\\\\- Designed database schemas for multiple products using MySQL Workbench.\\\\\\\\- Setup and maintained Directus and Ghost headless CMS for the content writers.\\\\\\\\- Designed and deployed AWS architecture for multiple production and internal programs using EC2, RDS, and R53.\\\\\\\\- Worked with the frontend team to adhere designs to modern web design guidelines.\",\"start_date\":\"05\/2022\",\"end_date\":\"06\/2022\"}]}"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
