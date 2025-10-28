@@ -1,0 +1,132 @@
+"use client"
+
+import Link from "next/link"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { validateEmail } from "@/lib/index"
+
+const SignIn = () => {
+    const router = useRouter()
+    const submitForm = async (e) => {
+        e.preventDefault()
+
+        // Form validation
+        setFormError("")
+        if (!formEmail) {
+            setTimeout(() => setFormError("Empty email."), 300)
+            return -1
+        }
+        if (!formPassword) {
+            setTimeout(() => setFormError("Empty password."), 300)
+            return -1
+        }
+        if (!validateEmail(formEmail)) {
+            setTimeout(() => setFormError("Invalid email."), 300)
+            return -1
+        }
+
+        const res = await fetch("http://localhost:8080/api/auth/login", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                credentials: "include",
+            },
+            body: JSON.stringify({ email: formEmail, password: formPassword })
+        })
+        const userData = await res.json()
+        window.localStorage.setItem("token", userData.token)
+        window.localStorage.setItem("userId", userData.userId)
+        window.localStorage.setItem("email", userData.email)
+        window.localStorage.setItem("name", userData.name)
+        window.localStorage.setItem("profilePicture", userData.profilePicture || "")
+
+        router.push("/dashboard")
+    }
+
+    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+    const redirectUri = process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI; // e.g., http://localhost:3000/oauth/callback
+    useEffect(() => {
+        window.addEventListener("message", async (event) => {
+            if (event.data.type === "google_oauth_success") {
+                try {
+                    console.log(event.data.code)
+                    const res = await fetch("http://localhost:8080/api/auth/google", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ code: event.data.code, redirectUri }),
+                    })
+                    const userData = await res.json()
+                    const token = userData.token
+                    document.cookie = `token=${token}` // Update expiry
+                    window.localStorage.setItem("token", userData.token)
+                    window.localStorage.setItem("userId", userData.userId)
+                    window.localStorage.setItem("email", userData.email)
+                    window.localStorage.setItem("name", userData.name)
+                    window.localStorage.setItem("profilePicture", userData.profilePicture+"?sz=256" || "")
+                    router.push('/dashboard')
+                } catch (err) {
+                    console.error(err)
+                }
+            }
+        });
+    }, [])
+    const googleSignIn = () => {
+        const scope = encodeURIComponent("openid profile email");
+        const url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}&access_type=offline&prompt=consent`;
+        const strWindowFeatures = `toolbar=no, menubar=no, width=600, height=700, top=${(screen.height/2)-350}, left=${(screen.width/2)-300}`;
+        window.open(url, "GoogleOAuthPopup", strWindowFeatures)
+    };
+
+    const [formError, setFormError] = useState("")
+
+    const [formEmail, setFormEmail] = useState("rg2121@srmist.edu.in")
+    const [formPassword, setFormPassword] = useState("password")
+    const handleEmail = (e) => setFormEmail(e.target.value)
+    const handlePassword = (e) => setFormPassword(e.target.value)
+
+    return (
+        <>
+            <div className="bg-gradient-to-tl from-secondary to-primary flex-grow flex flex-row  justify-center pt-[80px] pb-[120px]">
+                <div className="max-w-6xl flex-grow mx-auto flex flex-col items-center">
+                    <Link href="/"><span className="text-2xl font-display font-bold text-white">
+                        LaTeX<span className="text-[#acf4e8]">Resume</span></span>
+                    </Link>
+                    <form id="contact-form" className="flex flex-col items-center mx-auto mt-8 max-w-xl w-full p-8 bg-white/80 rounded-lg shadow-md shadow-[rgba(0,0,0,0.09)] ">
+                        <p className="text-3xl font-display opacity-95 text-center text-primary">
+                            Sign In
+                        </p>
+                        <div className="w-full mt-12">
+                            <label for="email" className="block font-medium">Email</label>
+                            <input type="email" id="email" name="email" placeholder="john@doe.com" value={formEmail} onChange={handleEmail} required
+                                className="text-gray-800 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/75 focus:border-primary/75 sm:text-sm bg-white/90"
+                            />
+                        </div>
+                        <div className="w-full mt-4">
+                            <label for="password" className="block font-medium">Password</label>
+                            <input type="password" id="password" name="password" placeholder="********" value={formPassword} onChange={handlePassword} required
+                                className="text-gray-800 mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/75 focus:border-primary/75 sm:text-sm bg-white/90"
+                            />
+                        </div>
+                        <span className="text-red-700 mt-3">{formError}</span>
+                        <button onClick={submitForm} type="submit" className="mt-6 w-full bg-primary text-white font-semibold py-2 px-4 rounded-lg">
+                            Sign In
+                        </button>
+                        <button onClick={googleSignIn} className="flex items-center justify-center cursor-pointer mt-6 w-full bg-white border-primary text-primary border-2 font-semibold py-2 px-4 rounded-lg">
+                            <img src="/google.svg" alt="" className="h-6 mr-3" />
+                            Sign In with Google
+                        </button>
+                        <span className="text-center mt-4">
+                            Not a user?
+                            <Link href="/signup" className="text-primary hover:underline"> Sign up</Link>
+                        </span>
+                    </form>
+                </div>
+            </div>
+            <footer className="bg-gray-700 text-white font-light text-sm py-6 text-center">
+                Copyright &copy; 2024 LaTeX Resume Builder. All rights reserved.
+            </footer>
+        </>
+    )
+}
+
+export default SignIn

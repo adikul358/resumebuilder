@@ -1,0 +1,24 @@
+meta {
+  name: Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/api/auth/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "rg112@srmist.edu.in",
+    "password": "password",
+    "name": "Rohit Gupta"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
