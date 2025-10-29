@@ -84,15 +84,34 @@ public class ResumeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResumeResponse> updateResume(
+    public ResponseEntity<byte[]> updateResume(
             @PathVariable String id,
             @Valid @RequestBody UpdateResumeRequest request,
             @RequestHeader("Authorization") String authHeader) {
 
         String userId = extractUserIdFromToken(authHeader);
-        ResumeResponse response = resumeService.updateResume(id, request, userId);
+        resumeService.updateResume(id, request, userId);
 
-        return ResponseEntity.ok(response);
+        try {
+            // 1. Extract JSON string under "content"
+            String jsonString = request.getContent();
+
+            // 2. Parse JSON string into Map
+            ObjectMapper mapper = new ObjectMapper();
+            Map<String, Object> data = mapper.readValue(jsonString, Map.class);
+
+            byte[] pdf = pdfService.generatePdfFromData(data);
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"resume.pdf\"")
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(pdf);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(("Error: " + e.getMessage()).getBytes());
+        }
+//        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")

@@ -34,7 +34,7 @@ public class ResumeService {
     }
 
     public List<ResumeResponse> getAllResumes(String userId) {
-        return resumeRepository.findByUserId(userId)
+        return resumeRepository.findByUserIdOrderByUpdatedAtDesc(userId)
                 .stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());

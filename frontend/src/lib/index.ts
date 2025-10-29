@@ -14,3 +14,8 @@ export const descToBullets = (md) => {
     .map(line => line.replace(/^-\s*/, '')) // remove the dash and space
     .filter(Boolean);                      // remove any empties
 }
+
+export const fmtDate = (date) => {
+  const d = new Date(date);
+  return d.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' });
+}

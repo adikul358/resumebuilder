@@ -3,8 +3,8 @@ import FormContext from "./FormContext"
 
 export default function ExperienceItem({ val, idx }) {
     const {
-        handleRemoveEducation,
-        handleUpdateEducation
+        handleRemoveExperience,
+        handleUpdateExperience
     } = useContext(FormContext)
 
     return (

@@ -34,10 +34,10 @@ const SignIn = () => {
             body: JSON.stringify({ email: formEmail, password: formPassword })
         })
         const userData = await res.json()
-        window.localStorage.setItem("token", userData.token)
-        window.localStorage.setItem("userId", userData.userId)
-        window.localStorage.setItem("email", userData.email)
-        window.localStorage.setItem("name", userData.name)
+        window.localStorage.setItem("token", userData.token || "")
+        window.localStorage.setItem("userId", userData.userId || "")
+        window.localStorage.setItem("email", userData.email || "")
+        window.localStorage.setItem("name", userData.name || "")
         window.localStorage.setItem("profilePicture", userData.profilePicture || "")
 
         router.push("/dashboard")
@@ -62,7 +62,7 @@ const SignIn = () => {
                     window.localStorage.setItem("userId", userData.userId)
                     window.localStorage.setItem("email", userData.email)
                     window.localStorage.setItem("name", userData.name)
-                    window.localStorage.setItem("profilePicture", userData.profilePicture+"?sz=256" || "")
+                    window.localStorage.setItem("profilePicture", userData.profilePicture.slice(0, -6) || "")
                     router.push('/dashboard')
                 } catch (err) {
                     console.error(err)
@@ -73,7 +73,7 @@ const SignIn = () => {
     const googleSignIn = () => {
         const scope = encodeURIComponent("openid profile email");
         const url = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}&access_type=offline&prompt=consent`;
-        const strWindowFeatures = `toolbar=no, menubar=no, width=600, height=700, top=${(screen.height/2)-350}, left=${(screen.width/2)-300}`;
+        const strWindowFeatures = `toolbar=no, menubar=no, width=600, height=700, top=${(screen.height / 2) - 350}, left=${(screen.width / 2) - 300}`;
         window.open(url, "GoogleOAuthPopup", strWindowFeatures)
     };
 

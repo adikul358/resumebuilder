@@ -1,20 +1,19 @@
 "use client"
 
-import { useReducer } from "react"
+import { use, useEffect, useReducer, useState } from "react"
 import Link from "next/link";
 import { descToBullets } from "@/lib";
 import FormContext from "@/components/FormContext";
 import EducationItem from "@/components/EducationItem";
 import ExperienceItem from "@/components/ExperienceItem";
 import { FormContextType } from "@/types";
+import Avatar from "@/components/Avatar";
 
-const Create = () => {
-    const initialData = {
-        education: [], 
-        experience: [],
-        name: window.localStorage.getItem("name"),
-        email: window.localStorage.getItem("email")
-    }
+interface EditParams { id: string }
+
+const Edit = ({ params }) => {
+    const [loading, setLoading] = useState(true)
+    const { id } = use<EditParams>(params)
 
     const ACTIONS = {
         ADD_EDUCATION: 'ADD_EDUCATION',
@@ -66,9 +65,10 @@ const Create = () => {
                 };
 
             case ACTIONS.REMOVE_EXPERIENCE:
+                console.log("removing exp", action)
                 return {
                     ...state,
-                    experience: state.experience.filter((_, i) => i !== action.index)
+                    experience: state.experience.filter((_, i) => i !== action.id)
                 };
 
             case "SET":
@@ -79,7 +79,7 @@ const Create = () => {
         }
     }
 
-    const [state, dispatch] = useReducer(formReducer, initialData);
+    const [state, dispatch] = useReducer(formReducer, {education: [], experience: []});
 
     const handleAddEducation = () => {
         dispatch({ type: ACTIONS.ADD_EDUCATION });
@@ -97,6 +97,7 @@ const Create = () => {
         dispatch({ type: ACTIONS.UPDATE_EXPERIENCE, payload: { id, field, value } });
     };
     const handleRemoveExperience = (id) => {
+        console.log(state.experience, id)
         dispatch({ type: ACTIONS.REMOVE_EXPERIENCE, id });
     };
     const formContext = {
@@ -116,8 +117,8 @@ const Create = () => {
         t.email = window.localStorage.getItem("email")
         t.experience.map(v => v.details = descToBullets(v.description))
 
-        const res = fetch("http://localhost:8080/api/resumes", {
-            method: "POST",
+        fetch(`http://localhost:8080/api/resumes/${id}`, {
+            method: "PUT",
             headers: { "Content-Type": "application/json", "Authorization": `Bearer ${window.localStorage.getItem("token")}` },
             body: JSON.stringify({ title: "Resume", content: JSON.stringify(t) })
         })
@@ -129,26 +130,19 @@ const Create = () => {
             });
     }
 
-    const populate = () => dispatch({
-        type: "SET", payload: {
-            "education": [
-                {
-                    "school": "SRM Institute of Technology", "degree": "Bachelor's of Technology, Computer Science", "location": "Chennai", "description": "GPA: 9.4\nCourses: Advanced Programming Practice, Computer Architecture, Operating Systems", "start_month": "08", "start_year": "2023", "end_month": "08", "end_year": "2027"
-                }
-            ],
-            "experience": [
-                {
-                    "company": "Skilzen", "position": "Project Manager", "location": "Bengaluru", "description": "- Led team of 8 developer interns and established Git version control guidelines.\n- Migrated the product’s codebase from JavaScript to TypeScript for large scale type safety and type documentation.\n- Worked closely with the founder to plan project timelines.\n- Developed automated CI/CD pipelines using Github Actions.", "start_month": "06", "start_year": "2022", "end_month": "08", "end_year": "2022",
-                },
-                {
-                    "company": "Skilzen", "position": "Backend Engineer Intern", "location": "Bengaluru", "description": "- Wrote the backend for an ed-tech website using Next.js, Directus, and MySQL.\n- Designed database schemas for multiple products using MySQL Workbench.\n- Setup and maintained Directus and Ghost headless CMS for the content writers.\n- Designed and deployed AWS architecture for multiple production and internal programs using EC2, RDS, and R53.\n- Worked with the frontend team to adhere designs to modern web design guidelines.", "start_month": "05", "start_year": "2022", "end_month": "06", "end_year": "2022"
-                }
-            ],
-            "metadata": {
-                "name": "Aditya Kulshrestha", "email": "ak2162@srmist.edu.in", "phone": "+91 7840869129", "linkedin": "adikul358", "github": "adikul358", "website": "adikul.dev"
-            }
-        }
-    })
+    useEffect(() => {
+        (async () => {
+            const res = await fetch(`http://localhost:8080/api/resumes/${id}`, {
+                method: "GET",
+                headers: { "Authorization": `Bearer ${window.localStorage.getItem("token")}` },
+            })
+            let data = await res.json()
+            Object.assign(data, JSON.parse(data.content))
+            console.log({data})
+            dispatch({ type: "SET", payload: data })
+            setLoading(false)
+        })()
+    }, [])
 
     return (
         <>
@@ -158,18 +152,17 @@ const Create = () => {
                         LaTeX<span className="text-[#acf4e8]">Resume</span></span>
                     </Link>
                     <div className="flex flex-row items-center gap-x-6 font-medium">
-                        <Link href="/" className="px-4 py-1 border border-white text-white rounded-lg font-medium">Sign Out</Link>
+                        <Avatar />
                     </div>
                 </nav>
             </div>
             <div className="max-w-6xl w-full mx-auto flex flex-col flex-grow pt-12 pb-24 px-3">
 
-                <div className="flex items-center justify-between">
-                    <p className="text-3xl font-display text-primary">Create a New Resume</p>
-                    <button onClick={populate} className="px-6 py-2 bg-secondary text-white rounded-full">Test Data</button>
+                <div className="flex items-center ">
+                    <p className="text-3xl font-display text-primary">Edit Resume</p>
                 </div>
 
-                <FormContext.Provider value={formContext as FormContextType}>
+                {!loading && <FormContext.Provider value={formContext as FormContextType}>
                     <form className="max-w-3xl flex flex-col" onSubmit={handleForm}>
 
                         <p className="mt-12 text-2xl font-display text-gray-800 border-b border-gray-800">Education</p>
@@ -195,7 +188,7 @@ const Create = () => {
                         </button>
 
                     </form>
-                </FormContext.Provider>
+                </FormContext.Provider>}
 
             </div>
             <footer className="bg-gray-700 text-white font-light text-sm py-6 text-center">
@@ -205,4 +198,4 @@ const Create = () => {
     )
 }
 
-export default Create
+export default Edit

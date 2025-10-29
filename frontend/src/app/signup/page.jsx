@@ -43,10 +43,10 @@ const SignUp = () => {
             body: JSON.stringify({ name: formName, email: formEmail, password: formPassword })
         })
         const userData = await res.json()
-        window.localStorage.setItem("token", userData.token)
-        window.localStorage.setItem("userId", userData.userId)
-        window.localStorage.setItem("email", userData.email)
-        window.localStorage.setItem("name", userData.name)
+        window.localStorage.setItem("token", userData.token || "")
+        window.localStorage.setItem("userId", userData.userId || "")
+        window.localStorage.setItem("email", userData.email || "")
+        window.localStorage.setItem("name", userData.name || "")
         window.localStorage.setItem("profilePicture", userData.profilePicture || "")
 
         router.push("/dashboard")
@@ -71,7 +71,7 @@ const SignUp = () => {
                     window.localStorage.setItem("userId", userData.userId)
                     window.localStorage.setItem("email", userData.email)
                     window.localStorage.setItem("name", userData.name)
-                    window.localStorage.setItem("profilePicture", userData.profilePicture+"?sz=256" || "")
+                    window.localStorage.setItem("profilePicture", userData.profilePicture.slice(0, -6) || "")
                     router.push('/dashboard')
                 } catch (err) {
                     console.error(err)
